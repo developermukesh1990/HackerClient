@@ -1,0 +1,38 @@
+<div *ngIf="(stories | searchFilter : searchText).length > 0 ; else noResultFound">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+    
+           
+    
+          </tr>
+        </thead>
+        <tbody>
+         
+    
+          <tr *ngFor="let item of (stories | searchFilter : searchText | paginate: {'itemsPerPage': pageSize, 'currentPage': page,'totalItems': count }) ">
+    
+            <td class="text-center" role="button" (click)="open(item.url)">
+
+              
+              <h4>{{item.title}} </h4>
+              
+                
+            </td>
+    
+          </tr>
+    
+        </tbody>
+      </table>
+     
+</div>
+<div>
+    <ng-template #noResultFound>
+        <h4 class="d-flex justify-content-center">No Record found</h4>
+    </ng-template>
+</div>
+  <div class="d-flex justify-content-center">
+    <pagination-controls previousLable="prev" nextLabel="Next"
+      (pageChange)="OnPageSizeChange($event)"></pagination-controls>
+
+  </div>

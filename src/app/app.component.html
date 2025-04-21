@@ -3,71 +3,14 @@
   <h5 class="card-header">Hacker News Top Stories</h5>
   <div class="card-body">
     <form>
-      <div class="row">
-        <div class="col col-md-2">
-
-          <input type="text" class="form-control" id="search" #searchItem>
+      <div class="row row d-flex justify-content-center">
+        <div class="col col-md-4">
+          <input type="text" placeholder="search" class="form-control" id="searchText" name="searchText" [(ngModel)]="searchText">
         </div>
-        <div class="col col-md-2">
-          <button id="btnsearch" class="btn btn-primary form-control btn-block"
-            (click)="search(searchItem)">Search</button>
 
-        </div>
       </div>
     </form>
   </div>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-
-        <!-- <th scope="col">Newest Stories</th> -->
-
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of stories | paginate:{
-        itemsPerPage: tablesize,
-        currentPage:page,
-        totalItems: count
-
-      };">
-
-        <td>
-          <h4>{{item.title}}</h4>
-          
-          <p class="fw-lighter"> <b>By</b>: {{item.by | uppercase}}</p> <br> 
-          
-           <button *ngIf="item.url" class="btn btn-primary" (click)="open(item.url)">Go to
-            News article</button>
-              <button *ngIf="!item.url"  class="btn  btn-warning" data-toggle="tooltip" data-placement="top" data-html="true" title="Link doesn't exist for this news story" >Go to
-                News article</button>
-             
-            
-        </td>
-
-      </tr>
-
-    </tbody>
-  </table>
-  <div>
-    <pagination-controls previousLable="prev" nextLabel="Next"
-      (pageChange)="onTableDataChange($event)"></pagination-controls>
-
-  </div>
-
-
-  <!-- <div class="card" style="width: 50rem;">
-    
-    
-    <div class="card-body" *ngFor="let item of stories; index as i">
-      <h5 class="card-title">{{item.title}}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <button class="btn btn-primary" (click)="open(item.url)">Go to Story</button>
-    </div>
-  </div> -->
-
-
-
+  <app-story-list [searchText]="searchText"></app-story-list>
 </div>
-
